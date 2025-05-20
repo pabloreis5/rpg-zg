@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>RPG ZG - Início</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="bg-rpg">
+    <div class="vinheta"></div>
+
+    <div class="conteudo">
+        <!-- LOGO -->
+        <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="Logo do Jogo" class="logo">
+
+        <!-- BOTÕES COMO IMAGENS -->
+        <div class="botoes-imagem">
+            <a href="/continuar">
+                <img src="{{ url_for('static', filename='imagens/botton-continuar.png') }}" alt="Continuar" class="botao-imagem">
+            </a>
+            <a href="/regiao">
+                <img src="{{ url_for('static', filename='imagens/botton-novojogo.png') }}" alt="Novo Jogo" class="botao-imagem">
+            </a>
+        </div>
+    </div>
+</body>
+</html>
