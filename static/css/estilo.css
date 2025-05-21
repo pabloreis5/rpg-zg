@@ -11,6 +11,7 @@ body.bg-rpg {
     height: 100vh;
     overflow: hidden;
     position: relative;
+    font-size: 1rem;
 }
 
 body.bg-fase1 {
@@ -25,6 +26,7 @@ body.bg-fase1 {
     height: 100vh;
     overflow: hidden;
     position: relative;
+    font-size: 1rem;
 }
 
 .vinheta {
@@ -49,86 +51,173 @@ body.bg-fase1 {
     box-sizing: border-box;
 }
 
-/* ==== CLASSES EXCLUSIVAS DA REGIÃO 1 ==== */
-
-.regiao-topo {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
+.logo {
+    max-width: 90%;
+    width: 300px;
+    height: auto;
+    margin-bottom: 2rem;
 }
 
-.regiao-link-topo {
-    color: #c44;
-    text-decoration: none;
-    font-weight: bold;
+.botao-imagem {
+    max-width: 90%;
+    width: 220px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.botao-imagem:hover {
+    transform: scale(1.05);
+}
+
+
+/* ==== REGIÃO 1 ==== */
+body.bg-fase1 {
+    background-image: url('../imagens/bg-fase1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #000;
+    font-family: 'IM Fell English SC', serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
     font-size: 1rem;
 }
+.regiao-botao-batalha {
+    transition: transform 0.3s ease;
+}
+.regiao-botao-batalha:hover{
+    transform: scale(1.05);
+}
 
-.regiao-link-topo:hover,
+.regiao-dialogo {
+    padding: 3rem 2rem;
+    width: 85%;
+    max-width: 700px;
+    min-height: 100px;
+    font-size: 1.4rem;
+    line-height: 1.4;
+}
+.regiao-link-skip {
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: #ccc;
+    text-decoration: none;
+    font-style: italic;
+}
 .regiao-link-skip:hover {
     text-decoration: underline;
     cursor: pointer;
 }
-
-.regiao-botoes {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-    margin-bottom: 1.5rem;
+#btnNovoJogo {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+}
+#btnBatalhar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+#btnNovoJogo img,
+#btnBatalhar img {
+    width: 120px;
+    height: auto;
 }
 
-.regiao-botao {
-    background-color: #ccc;
-    border: 2px solid #000;
-    padding: 0.5rem 1rem;
+#linkGlozium {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 998;
+}
+
+#linkGlozium .link-topo {
+    color: #f33;
     text-decoration: none;
-    color: #000;
     font-weight: bold;
     font-size: 1rem;
-    display: inline-block;
 }
 
-.regiao-botao:hover {
-    background-color: #eee;
-    cursor: pointer;
+#linkGlozium .link-topo:hover {
+    text-decoration: underline;
 }
 
-.regiao-vida {
-    background-color: #f9e79f;
-    color: #000;
-    padding: 0.5rem 1rem;
-    border: 2px solid #000;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    font-size: 1.1rem;
+#boxVida {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #fff;
+    border-radius: 9px;
+    z-index: 999;
+    backdrop-filter: blur(3px);
 }
 
-.regiao-dialogo {
-    border: 2px solid #fff;
-    background-color: rgba(0, 0, 0, 0.75);
-    padding: 1rem 2rem;
-    width: 85%;
-    max-width: 700px;
-    min-height: 100px;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+/* ===== Responsividade ===== */
+
+@media (max-width: 768px) {
+    .logo {
+        width: 200px;
+        margin-bottom: 1.5rem;
+    }
+
+    .botao-imagem {
+        width: 180px;
+    }
+
+    .regiao-dialogo {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .conteudo {
+        padding: 0.5rem;
+    }
+    .regiao-botao-imagem {
+        width: 160px;
+    }
+
+    .regiao-dialogo {
+        font-size: 1rem;
+    }
+    #boxVidaSimples {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem;
+        top: 10px;
+        right: 10px;
+    }
 }
 
-.regiao-interacao {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-}
+@media (max-width: 480px) {
+    .logo {
+        width: 150px;
+    }
 
-.regiao-link-skip {
-    color: #ccc;
-    text-decoration: none;
-    font-style: italic;
-    font-size: 0.9rem;
+    .botao-imagem {
+        width: 150px;
+    }
+
+    .regiao-dialogo {
+        font-size: 0.95rem;
+    }
+    .regiao-botao-imagem {
+        width: 140px;
+    }
+
+    .regiao-dialogo {
+        font-size: 0.95rem;
+    }
+    
 }

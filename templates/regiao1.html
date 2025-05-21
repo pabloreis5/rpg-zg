@@ -2,7 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Região 1 - Floresta do Atendimentus</title>
+    <title>RPG ZG - Região 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
 </head>
 <body class="bg-fase1">
@@ -10,30 +11,31 @@
 
     <div class="conteudo">
 
-        <!-- TOPO -->
-        <div class="topo-botoes">
+        <div id="linkGlozium">
             <a href="/boss" class="link-topo">enfrentar Glozium</a>
         </div>
 
-        <div class="botoes-imagem">
-            <a href="/" class="botao-simples">NOVO JOGO</a>
-            <a href="/regiao2" class="botao-simples">próxima fase</a>
+        <div class="regiao-top-buttons">
+            <a href="/" id="btnNovoJogo">
+                <img src="{{ url_for('static', filename='imagens/botton-novojogo.png') }}" alt="Novo Jogo" class="regiao-botao-pequeno">
+            </a>
         </div>
 
-        <!-- VIDA -->
-        <div class="vida-box">
-            Número de VIDA: <strong id="vida">5</strong>
+        <div id="boxVida">
+            Vida: <strong id="vida">5</strong>
         </div>
 
-        <!-- DIÁLOGO -->
-        <div class="caixa-dialogo">
-            <p id="texto">NARRATIVAS AQUI....</p>
+        <div class="regiao-dialogo-wrapper">
+            <div class="regiao-dialogo" id="dialogo-box">
+                <p id="texto">...</p>
+            </div>
+            <a id="btnSkip" class="regiao-link-skip">[skip]</a>
         </div>
 
-        <!-- BOTÕES FUNDO -->
-        <div class="botoes-interacao">
-            <a href="/batalha1" class="botao-simples">Batalhar !</a>
-            <a id="btnSkip" class="link-skip">skip...</a>
+        <div class="regiao-interacao">
+            <a href="/batalha1" id="btnBatalhar">
+                <img src="{{ url_for('static', filename='imagens/botton-batalha.png') }}" alt="Batalhar" class="regiao-botao-batalha">
+            </a>
         </div>
 
     </div>
@@ -56,8 +58,12 @@
             if (i < textos.length) {
                 textoEl.textContent = textos[i];
                 i++;
+            } else {
+                btnSkip.style.display = "none";
             }
         });
+
+        textoEl.textContent = textos[i++];
     </script>
 </body>
 </html>
