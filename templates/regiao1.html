@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Região 1 - Floresta do Atendimentus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="bg-fase1">
+    <div class="vinheta"></div>
+
+    <div class="conteudo">
+
+        <!-- TOPO -->
+        <div class="topo-botoes">
+            <a href="/boss" class="link-topo">enfrentar Glozium</a>
+        </div>
+
+        <div class="botoes-imagem">
+            <a href="/" class="botao-simples">NOVO JOGO</a>
+            <a href="/regiao2" class="botao-simples">próxima fase</a>
+        </div>
+
+        <!-- VIDA -->
+        <div class="vida-box">
+            Número de VIDA: <strong id="vida">5</strong>
+        </div>
+
+        <!-- DIÁLOGO -->
+        <div class="caixa-dialogo">
+            <p id="texto">NARRATIVAS AQUI....</p>
+        </div>
+
+        <!-- BOTÕES FUNDO -->
+        <div class="botoes-interacao">
+            <a href="/batalha1" class="botao-simples">Batalhar !</a>
+            <a id="btnSkip" class="link-skip">skip...</a>
+        </div>
+
+    </div>
+
+    <script>
+        const textos = [
+            "Você entra na misteriosa Floresta do Atendimentus...",
+            "Dizem que pessoas doentes ou com almas feridas podem se curar aqui.",
+            "Sandubinha caminha por entre as árvores densas e ouve um sussurro...",
+            "De repente, uma figura sombria aparece: Processus Ministerii!",
+            "Processus: 'Você não lutará contra mim, mas contra um ser criado por Glozium!'",
+            "Um ser humanóide surge entre as pernas do mago. A batalha se aproxima..."
+        ];
+
+        let i = 0;
+        const textoEl = document.getElementById("texto");
+        const btnSkip = document.getElementById("btnSkip");
+
+        btnSkip.addEventListener("click", () => {
+            if (i < textos.length) {
+                textoEl.textContent = textos[i];
+                i++;
+            }
+        });
+    </script>
+</body>
+</html>
