@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Batalha - Região 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="bg-fase1">
+    <div class="vinheta"></div>
+
+    <div class="conteudo">
+        <h2>Batalha na Floresta do Atendimento</h2>
+
+        <div id="vida-status">
+            <p><strong>Sandubinha</strong> - Vida: {{ session['vida_personagem'] }}</p>
+            <p><strong>Monstro</strong> - Vida: {{ session['vida_monstro'] }}</p>
+        </div>
+
+        <div id="log-batalha" style="margin: 1rem 0; text-align: left; max-width: 600px;">
+            <h4>Eventos da Batalha:</h4>
+            {% for evento in session['log_batalha'] %}
+                <p>- {{ evento }}</p>
+            {% endfor %}
+        </div>
+
+        <form method="POST">
+            <button type="submit" style="font-size: 1.2rem; padding: 0.6rem 1.2rem; cursor: pointer;">
+                Avançar Rodada
+            </button>
+        </form>
+
+        <div style="margin-top: 2rem;">
+            <a href="/" style="color: #ccc;">Desistir da Batalha</a>
+        </div>
+    </div>
+</body>
+</html>
