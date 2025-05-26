@@ -13,15 +13,19 @@
         <h2>Batalha na Floresta do Atendimento</h2>
 
         <div id="vida-status">
-            <p><strong>Sandubinha</strong> - Vida: {{ session['vida_personagem'] }}</p>
-            <p><strong>Monstro</strong> - Vida: {{ session['vida_monstro'] }}</p>
+            <p><strong>Sandubinha</strong> - Vida: {{ vida_personagem }}</p>
+            <p><strong>Monstro</strong> - Vida: {{ vida_monstro }}</p>
         </div>
 
         <div id="log-batalha" style="margin: 1rem 0; text-align: left; max-width: 600px;">
-            <h4>Eventos da Batalha:</h4>
-            {% for evento in session['log_batalha'] %}
-                <p>- {{ evento }}</p>
-            {% endfor %}
+            <h4>Eventos da Rodada:</h4>
+            {% if ultima_rodada %}
+                {% for evento in ultima_rodada %}
+                    <p>- {{ evento }}</p>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum evento ainda. Clique para iniciar a batalha.</p>
+            {% endif %}
         </div>
 
         <form method="POST">
