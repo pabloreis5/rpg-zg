@@ -1,5 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, session, request
 from random import randint
+from monsters import MONSTROS
+
 
 app = Flask(__name__)
 app.secret_key = 'rpg_secreto_123'
