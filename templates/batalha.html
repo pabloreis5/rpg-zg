@@ -28,15 +28,43 @@
             {% endif %}
         </div>
 
-        <form method="POST">
-            <button type="submit" style="font-size: 1.2rem; padding: 0.6rem 1.2rem; cursor: pointer;">
-                Avançar Rodada
-            </button>
-        </form>
+        <div id="inventario" style="margin: 1rem 0; padding: 1rem; border: 1px solid #555; background-color: rgba(0,0,0,0.3); border-radius: 8px;">
+    <h4>Equipar Item para esta Rodada:</h4>
+    <form method="POST">
+        <label>
+            <input type="radio" name="item_selecionado" value="" checked> <strong>Nenhum Item</strong>
+        </label>
+        <br>
+        {% set itens_conquistados = session.get("itens_conquistados", []) %}
+        {% for item_nome in itens_conquistados %}
+            {# Assumindo que ITENS é passado para o template #}
+            {% set item_id = '' %}
+            {% for id, details in ITENS.items() %}
+                {% if details.nome == item_nome %}
+                    {% set item_id = id %}
+                {% endif %}
+            {% endfor %}
 
-        <div style="margin-top: 2rem;">
-            <a href="/" style="color: #ccc;">Desistir da Batalha</a>
-        </div>
+            {% if item_id and ITENS[item_id] %}
+                {% set item_info = ITENS[item_id] %}
+                <label>
+                    <input type="radio" name="item_selecionado" value="{{ item_id }}">
+                    {{ item_info.nome }} ({{ item_info.descricao }})
+                </label>
+                <br>
+            {% endif %}
+        {% endfor %}
+
+        <button type="submit" style="font-size: 1.2rem; padding: 0.6rem 1.2rem; cursor: pointer; margin-top: 1rem;">
+            Avançar Rodada
+        </button>
+    </form>
+</div>
+
+<div style="margin-top: 2rem;">
+    <a href="/" style="color: #ccc;">Desistir da Batalha</a>
+</div>
+
     </div>
 </body>
 </html>
