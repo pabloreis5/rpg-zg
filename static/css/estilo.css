@@ -164,6 +164,243 @@ body.bg-fase1 {
     z-index: 999;
     backdrop-filter: blur(3px);
 }
+.batalha-container {
+    max-width: 800px;
+    margin: 5vh auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid #444;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    backdrop-filter: blur(5px);
+    overflow: hidden; 
+    position: relative; 
+    z-index: 2; 
+}
+
+.batalha-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid #444;
+    font-size: 1.3rem;
+}
+
+.status-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    min-width: 150px;
+    text-align: center;
+}
+
+.status-box span {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.status-box strong {
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.vs-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #c00;
+    text-shadow: 1px 1px 5px #000;
+}
+
+.batalha-main {
+    flex-grow: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.batalha-main h4 {
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 1px dashed #555;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.log-content {
+    flex-grow: 1;
+    overflow-y: auto; 
+    padding-right: 10px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.log-content p {
+    margin: 0 0 0.8rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+}
+.log-content p:last-child {
+    border-bottom: none;
+}
+
+.log-content::-webkit-scrollbar { width: 8px; }
+.log-content::-webkit-scrollbar-track { background: #222; border-radius: 4px; }
+.log-content::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+.log-content::-webkit-scrollbar-thumb:hover { background: #777; }
+
+.batalha-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.batalha-inventario {
+    padding: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid #444;
+    text-align: center;
+}
+
+.batalha-inventario h5 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: normal;
+}
+
+.inventario-slots {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.item-slot, .item-slot-vazio {
+    width: 60px;
+    height: 50px;
+    border: 2px solid #555;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative; 
+}
+.item-slot-vazio {
+    cursor: default;
+    opacity: 0.3;
+}
+
+.item-slot:hover {
+    border-color: #eee;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.item-slot input[type="radio"] {
+    display: none;
+}
+
+.item-slot input[type="radio"]:checked + span {
+    font-weight: bold;
+    color: #ffc;
+}
+.item-slot input[type="radio"]:checked + span::before {
+    content: '✓ ';
+    color: #0f0;
+}
+.item-slot:has(input[type="radio"]:checked) { 
+    border-color: #0f0;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+}
+
+.item-tooltip {
+    visibility: hidden;
+    width: 150px;
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 10;
+    bottom: 110%; 
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8rem;
+    border: 1px solid #666;
+}
+.item-tooltip::after { /* Flecha do tooltip */
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #111 transparent transparent transparent;
+}
+.item-slot:hover .item-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.batalha-actions {
+    padding: 1.5rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid #444;
+}
+
+.botao-batalha-avancar {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.0rem;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    background-color: #8B0000;
+    color: #eee;
+    border: 2px solid #500;
+    border-radius: 5px;
+    text-shadow: 1px 1px 2px #000;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+    display: inline-block; 
+}
+
+.botao-batalha-avancar:hover {
+    background-color: #a00;
+    border-color: #700;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.link-desistir {
+    display: block;
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.link-desistir:hover {
+    color: #fff;
+    text-decoration: underline;
+}
 
 /* ===== Responsividade ===== */
 
@@ -198,6 +435,18 @@ body.bg-fase1 {
         top: 10px;
         right: 10px;
     }
+    .batalha-container {
+        width: 95%;
+        margin: 2.5vh auto;
+        height: 95vh;
+    }
+    .batalha-header { font-size: 1rem; padding: 0.8rem; }
+    .status-box { min-width: 100px; padding: 0.3rem; }
+    .vs-text { font-size: 1.5rem; }
+    .batalha-main { padding: 1rem; }
+    .log-content { font-size: 1rem; }
+    .item-slot { width: 80px; height: 60px; font-size: 0.8rem; }
+    .botao-batalha-avancar { font-size: 1.2rem; padding: 0.6rem 2rem; }
 }
 
 @media (max-width: 480px) {
@@ -219,5 +468,7 @@ body.bg-fase1 {
     .regiao-dialogo {
         font-size: 0.95rem;
     }
-    
+    .batalha-header { flex-direction: column; gap: 10px; }
+    .item-slot { width: 70px; height: 50px; font-size: 0.7rem; }
+    .inventario-slots { gap: 10px; }  
 }

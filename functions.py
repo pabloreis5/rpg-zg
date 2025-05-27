@@ -1,16 +1,13 @@
-# Em functions.py
-
 from flask import session
 from random import randint
-from items import ITENS  # <-- ADICIONAR IMPORTAÇÃO
+from items import ITENS
 
 def executar_rodada():
     log = []
     item_ativo_id = session.get('item_ativo')
     item = ITENS.get(item_ativo_id) if item_ativo_id else None
-    efeitos_proxima_rodada = session.pop('efeitos_proxima_rodada', {}) # Pega e limpa efeitos
+    efeitos_proxima_rodada = session.pop('efeitos_proxima_rodada', {}) 
 
-    # --- Aplica Custos/Efeitos Iniciais ---
     if item and item.get('custo_uso'):
         custo = item['custo_uso']
         if custo['tipo'] == 'vida':
@@ -20,7 +17,6 @@ def executar_rodada():
                 log.append("💀 Sandubinha foi derrotado pelo custo do item...")
                 return log
 
-    # --- Ataque de Sandubinha ---
     rodada_log = ["🎲 Rodada - Sandubinha ataca"]
     intervalo = session["vida_monstro_inicial"]
     num_secreto = session["num_secreto_monstro"]
@@ -44,23 +40,20 @@ def executar_rodada():
     rodada_log.append(f"- Dano causado: {dano}")
     rodada_log.append(f"- Vida restante do monstro: {session['vida_monstro']}")
 
-    # Aplica consequências de erro
     if errou and item and item.get('consequencia') and item['consequencia']['gatilho'] == 'erro':
         efeito = item['consequencia']
         if efeito['efeito'] == 'bonus_dano_monstro':
             efeitos_proxima_rodada['bonus_dano_monstro'] = efeito['valor']
             rodada_log.append(f"   -> ⚠️ Errou! Próximo ataque do monstro terá +{efeito['valor']} dano.")
-        # Adicionar outras consequências de erro aqui...
 
     log.extend(rodada_log)
 
     if session["vida_monstro"] <= 0:
         log.append("✅ O monstro foi derrotado!")
-        session.pop('item_ativo', None) # Limpa item ao fim da batalha
+        session.pop('item_ativo', None)
         session.pop('efeitos_proxima_rodada', None)
         return log
 
-    # --- Ataque do Monstro ---
     rodada_log = ["👹 Rodada - Monstro ataca"]
     intervalo_m = session["vida_personagem_inicial"]
     num_secreto_m = session["num_secreto_personagem"]
@@ -69,7 +62,6 @@ def executar_rodada():
     acertos_m = sorteios_m.count(num_secreto_m)
     dano_m = acertos_m * num_secreto_m
 
-    # Aplica bônus de dano de efeitos anteriores
     if 'bonus_dano_monstro' in efeitos_proxima_rodada:
         dano_m += efeitos_proxima_rodada['bonus_dano_monstro']
         rodada_log.append(f"   -> ⚠️ Efeito de item: Monstro causa +{efeitos_proxima_rodada['bonus_dano_monstro']} dano!")
@@ -85,15 +77,13 @@ def executar_rodada():
 
     if session["vida_personagem"] <= 0:
         log.append("💀 Sandubinha foi derrotado...")
-        session.pop('item_ativo', None) # Limpa item ao fim da batalha
+        session.pop('item_ativo', None)
         session.pop('efeitos_proxima_rodada', None)
 
-    # Salva efeitos para a próxima rodada, se houver
     if efeitos_proxima_rodada:
          session['efeitos_proxima_rodada'] = efeitos_proxima_rodada
 
-    # Limpa o item ativo para forçar a seleção na próxima rodada
-    # session.pop('item_ativo', None) # DESCOMENTE se quiser que o item seja escolhido a CADA rodada
+    session.pop('item_ativo', None)
 
     return log
 
@@ -103,7 +93,7 @@ def limpar_dados_batalha():
         "num_secreto_monstro", "qtd_sorteios_personagem", "qtd_sorteios_monstro",
         "log_batalha", "ultima_rodada", "batalha_iniciada",
         "vida_personagem_inicial", "vida_monstro_inicial", "monster_id",
-        "item_ativo", "efeitos_proxima_rodada" # <-- ADICIONAR
+        "item_ativo", "efeitos_proxima_rodada"
     ]
     for chave in chaves_para_limpar:
         session.pop(chave, None)

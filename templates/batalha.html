@@ -2,69 +2,81 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Batalha - Região 1</title>
+    <title>Batalha - {{ nome_monstro }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
 </head>
 <body class="bg-fase1">
     <div class="vinheta"></div>
 
-    <div class="conteudo">
-        <h2>Batalha na Floresta do Atendimento</h2>
+    <div class="batalha-container">
 
-        <div id="vida-status">
-            <p><strong>Sandubinha</strong> - Vida: {{ vida_personagem }}</p>
-            <p><strong>Monstro</strong> - Vida: {{ vida_monstro }}</p>
-        </div>
+        <header class="batalha-header">
+            <div class="status-box status-personagem">
+                <span>Sandubinha</span>
+                <strong>Vida: {{ vida_personagem }}</strong>
+            </div>
+            <div class="vs-text">VS</div>
+            <div class="status-box status-monstro">
+                <span>{{ nome_monstro }}</span>
+                <strong>Vida: {{ vida_monstro }}</strong>
+            </div>
+        </header>
 
-        <div id="log-batalha" style="margin: 1rem 0; text-align: left; max-width: 600px;">
+        <main class="batalha-main">
             <h4>Eventos da Rodada:</h4>
-            {% if ultima_rodada %}
-                {% for evento in ultima_rodada %}
-                    <p>- {{ evento }}</p>
-                {% endfor %}
-            {% else %}
-                <p>Nenhum evento ainda. Clique para iniciar a batalha.</p>
-            {% endif %}
-        </div>
-
-        <div id="inventario" style="margin: 1rem 0; padding: 1rem; border: 1px solid #555; background-color: rgba(0,0,0,0.3); border-radius: 8px;">
-    <h4>Equipar Item para esta Rodada:</h4>
-    <form method="POST">
-        <label>
-            <input type="radio" name="item_selecionado" value="" checked> <strong>Nenhum Item</strong>
-        </label>
-        <br>
-        {% set itens_conquistados = session.get("itens_conquistados", []) %}
-        {% for item_nome in itens_conquistados %}
-            {# Assumindo que ITENS é passado para o template #}
-            {% set item_id = '' %}
-            {% for id, details in ITENS.items() %}
-                {% if details.nome == item_nome %}
-                    {% set item_id = id %}
+            <div class="log-content">
+                {% if ultima_rodada %}
+                    {% for evento in ultima_rodada %}
+                        <p>{{ evento }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p>A batalha começa! Selecione um item (opcional) e avance a rodada.</p>
                 {% endif %}
-            {% endfor %}
+            </div>
+        </main>
 
-            {% if item_id and ITENS[item_id] %}
-                {% set item_info = ITENS[item_id] %}
-                <label>
-                    <input type="radio" name="item_selecionado" value="{{ item_id }}">
-                    {{ item_info.nome }} ({{ item_info.descricao }})
-                </label>
-                <br>
-            {% endif %}
-        {% endfor %}
+        <form method="POST" class="batalha-form">
+            <section class="batalha-inventario">
+                <h5>Inventário (Selecione um item para usar):</h5>
+                <div class="inventario-slots">
+                    <label class="item-slot">
+                        <input type="radio" name="item_selecionado" value="" checked>
+                        <span>Nenhum</span>
+                    </label>
 
-        <button type="submit" style="font-size: 1.2rem; padding: 0.6rem 1.2rem; cursor: pointer; margin-top: 1rem;">
-            Avançar Rodada
-        </button>
-    </form>
-</div>
+                    {% set itens_conquistados = session.get("itens_conquistados", []) %}
+                    {% for item_nome in itens_conquistados %}
+                        {% set item_id = '' %}
+                        {% for id, details in ITENS.items() %}
+                            {% if details.nome == item_nome %}
+                                {% set item_id = id %}
+                            {% endif %}
+                        {% endfor %}
 
-<div style="margin-top: 2rem;">
-    <a href="/" style="color: #ccc;">Desistir da Batalha</a>
-</div>
+                        {% if item_id and ITENS[item_id] %}
+                            {% set item_info = ITENS[item_id] %}
+                            <label class="item-slot">
+                                <input type="radio" name="item_selecionado" value="{{ item_id }}">
+                                <span>{{ item_info.nome }}</span>
+                                <div class="item-tooltip">{{ item_info.descricao }}</div>
+                            </label>
+                        {% endif %}
+                    {% endfor %}
 
-    </div>
-</body>
+                    {% for i in range(6 - (itens_conquistados|length + 1)) %}
+                         <div class="item-slot-vazio"></div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <footer class="batalha-actions">
+                <button type="submit" class="botao-batalha-avancar">
+                    AVANÇAR RODADA
+                </button>
+                <a href="/" class="link-desistir">Desistir da Batalha</a>
+            </footer>
+        </form>
+
+    </div> </body>
 </html>
