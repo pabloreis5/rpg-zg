@@ -16,7 +16,7 @@
         </div>
 
         <div class="regiao-top-buttons">
-            <a href="/" id="btnNovoJogo">
+            <a href="{{ url_for('reiniciar') }}" id="btnNovoJogo">
                 <img src="{{ url_for('static', filename='imagens/botton-novojogo.png') }}" alt="Novo Jogo" class="regiao-botao-pequeno">
             </a>
         </div>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="regiao-interacao">
-            <a href="/batalha1" id="btnBatalhar">
+            <a href="{{ url_for('batalha', monster_id='processus') }}" id="btnBatalhar">
                 <img src="{{ url_for('static', filename='imagens/botton-batalha.png') }}" alt="Batalhar" class="regiao-botao-batalha">
             </a>
         </div>
