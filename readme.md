@@ -1,6 +1,6 @@
 # RPG ZG - A Aventura de Sandubinha
 
-![Logo RPG ZG](logo.jpg)
+![Logo RPG ZG](./static/imagens/logo.png)
 
 ## 📜 Sobre o Jogo
 
