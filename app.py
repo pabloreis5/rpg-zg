@@ -94,11 +94,11 @@ def batalha(monster_id):
         if session["vida_personagem"] <= 0:
             monstro_data = MONSTROS[session['monster_id']]
             session['derrota_context'] = {
-                'mensagem_derrota': f"Você foi derrotado por {monstro_data['nome']}...",
+                'nome_monstro': monstro_data['nome'],
                 'tentar_novamente_url': url_for('reiniciar')
             }
             limpar_dados_batalha()
-            session["batalha_iniciada"] = False 
+            session["batalha_iniciada"] = False
             return redirect(url_for('derrota'))
 
     return render_template("batalha.html",

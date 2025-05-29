@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Derrota...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="bg-derrota">
+    <div class="vinheta"></div> <div class="derrota-container">
+        {% if context %}
+            <h1 class="titulo-derrota">DERROTA</h1>
+
+            <p class="mensagem-derrota">
+                Você não foi capaz de derrotar {{ context.nome_monstro }}.<br>Tente outra vez, guerreiro!
+            </p>
+
+            <a href="{{ context.tentar_novamente_url }}"
+               class="link-novo-jogo">
+                NOVO JOGO
+            </a>
+        {% else %}
+            <h1 class="titulo-derrota">ERRO</h1>
+            <p class="mensagem-derrota">
+                Não foi possível carregar os dados da derrota.
+            </p>
+            <a href="{{ url_for('index') }}" class="link-novo-jogo">
+                VOLTAR AO INÍCIO
+            </a>
+        {% endif %}
+    </div>
+</body>
+</html>

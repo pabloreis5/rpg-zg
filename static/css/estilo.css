@@ -420,60 +420,60 @@ body.bg-vitoria {
 }
 .vitoria-container-v2 {
     padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente sutil */
+    background-color: rgba(0, 0, 0, 0.5); 
     border-radius: 10px;
     display: flex;
-    flex-direction: column; /* Organiza os itens verticalmente */
-    align-items: center;    /* Centraliza os itens horizontalmente */
-    justify-content: center;/* Centraliza os itens verticalmente no espaço disponível */
-    gap: 2rem;            /* Espaçamento entre os elementos */
-    max-width: 450px;       /* Largura máxima para o container */
+    flex-direction: column; 
+    align-items: center;   
+    justify-content: center;
+    gap: 2rem;            
+    max-width: 450px; 
     width: 90%;
-    text-align: center;     /* Garante que o texto dentro dos <p> e <h1> também seja centrado */
+    text-align: center;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    position: relative; /* Para garantir que fique acima da vinheta de body */
+    position: relative; 
     z-index: 2;
 }
 
 .titulo-vitoria-v2 {
-    font-size: 2.8rem; /* Tamanho do título "VITÓRIA!" */
-    color: #ffd700;     /* Cor dourada */
+    font-size: 2.8rem; 
+    color: #ffd700;    
     text-shadow: 2px 2px 4px #000;
-    margin: 0;          /* Remove margens padrão */
+    margin: 0;        
 }
 
 .item-ganho-imagem-v2 {
-    max-width: 130px;   /* Tamanho para a imagem do item */
+    max-width: 130px;  
     max-height: 130px;
     height: auto;
-    object-fit: contain; /* Garante que a imagem caiba sem distorcer */
-    border-radius: 5px;  /* Borda arredondada suave na imagem */
-    background-color: rgba(255,255,255,0.05); /* Fundo leve para a imagem se destacar */
-    padding: 5px; /* Pequeno preenchimento ao redor da imagem */
+    object-fit: contain;
+    border-radius: 5px; 
+    background-color: rgba(255,255,255,0.05); 
+    padding: 5px; 
 }
 
 .mensagem-item-ganho-v2 {
     font-size: 1.3rem;
-    color: #eee;         /* Cor clara para o texto */
+    color: #eee;        
     margin: 0;
 }
 
 .link-continuar-v2 {
     font-family: 'IM Fell English SC', serif;
     font-size: 1.2rem;
-    color: #ffc;        /* Cor amarela clara para o link */
+    color: #ffc;        
     text-decoration: none;
     padding: 0.6rem 1.2rem;
-    border: 1px solid #ffc; /* Borda sutil */
+    border: 1px solid #ffc; 
     border-radius: 5px;
     background-color: transparent;
     transition: all 0.3s ease;
-    text-transform: uppercase; /* Como no esboço */
+    text-transform: uppercase; 
 }
 
 .link-continuar-v2:hover {
     background-color: #ffc;
-    color: #111; /* Cor escura para o texto no hover */
+    color: #111;
     box-shadow: 0 0 10px rgba(255, 255, 192, 0.7);
 }
 
@@ -482,6 +482,78 @@ body.bg-vitoria {
     color: #333;
     box-shadow: 0 0 15px #ffd700;
     transform: scale(1.05);
+}
+body.bg-derrota {
+    background: linear-gradient(rgba(40, 0, 0, 0.7), rgba(40, 0, 0, 0.7)), url('../imagens/bg-fase1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'IM Fell English SC', serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ccc;
+    overflow: hidden;
+    position: relative;
+}
+
+.derrota-container {
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem; 
+    max-width: 450px; 
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.6); 
+    border: 1px solid #400; 
+    position: relative;
+    z-index: 2;
+}
+
+.titulo-derrota {
+    
+    font-size: 2.8rem;
+    color: #8B0000; 
+    text-shadow: 2px 2px 4px #000;
+    margin: 0;
+}
+
+.mensagem-derrota {
+   
+    font-size: 1.3rem;
+    color: #ccc; 
+    line-height: 1.6;
+    margin: 0;
+}
+
+.link-novo-jogo {
+    
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.2rem;
+    color: #ccc;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #888; 
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.link-novo-jogo:hover {
+    background-color: #ccc;
+    color: #111;
+    border-color: #ccc;
+    box-shadow: 0 0 10px rgba(204, 204, 204, 0.4);
 }
 
 /* ===== Responsividade ===== */
