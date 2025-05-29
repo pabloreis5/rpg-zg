@@ -7,7 +7,6 @@ from items import ITENS
 app = Flask(__name__)
 app.secret_key = 'rpg_secreto_123'
 
-# Rota Principal
 @app.route('/')
 def index():
     session.clear()
