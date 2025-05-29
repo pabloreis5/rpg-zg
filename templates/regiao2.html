@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>RPG ZG - Cavernas de Faturamentus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="bg-fase1"> <div class="vinheta"></div>
+
+    <div class="conteudo">
+
+        <div id="linkGlozium">
+            <a href="/boss" class="link-topo">enfrentar Glozium</a>
+        </div>
+
+        <div class="regiao-top-buttons">
+            <a href="{{ url_for('reiniciar') }}" id="btnNovoJogo">
+                <img src="{{ url_for('static', filename='imagens/botton-novojogo.png') }}" alt="Novo Jogo" class="regiao-botao-pequeno">
+            </a>
+        </div>
+
+        <div id="boxVida">
+            Vida: <strong id="vida">{{ vida_atual }}</strong>
+        </div>
+
+        <div class="regiao-dialogo-wrapper">
+            <div class="regiao-dialogo" id="dialogo-box">
+                <p id="texto">...</p>
+            </div>
+            <a id="btnSkip" class="regiao-link-skip">[skip]</a>
+        </div>
+
+        <div class="regiao-interacao">
+            <a href="{{ url_for('batalha', monster_id='urso') }}" id="btnBatalhar">
+                <img src="{{ url_for('static', filename='imagens/botton-batalha.png') }}" alt="Batalhar" class="regiao-botao-batalha">
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        const textos = [
+            "Percorrendo a caverna segurando uma tocha, Sandubinha escuta sons assustadores de grunhidos.",
+            "O cenário é iluminado por minérios misteriosos. Anciões fantasmas anotam coisas em pergaminhos, muito ocupados para falar.",
+            "Sandubinha: 'Que tipo de situação é essa?'",
+            "Um monstro em forma de urso surge de repente!",
+            "Urso Sangrento: 'Finalmente diversão! Esses anciões só sabem ficar anotando coisas inúteis. Vamos lutar, heroizinho!'",
+            "Sandubinha: 'Criatura desagradável, não me deu tempo nem de tomar uma água... então bora nessa!'",
+            "O Urso Sangrento se prepara... (clique em batalhar)!"
+        ];
+
+        let i = 0;
+        const textoEl = document.getElementById("texto");
+        const btnSkip = document.getElementById("btnSkip");
+        const btnBatalhar = document.getElementById("btnBatalhar");
+        const dialogoBox = document.getElementById("dialogo-box");
+        const btnNovoJogo = document.getElementById("btnNovoJogo");
+        const boxVida = document.getElementById("boxVida");
+
+        btnBatalhar.style.display = 'none';
+        btnNovoJogo.style.display = 'none';
+        boxVida.style.display = 'none';
+
+        function exibirProximoTexto() {
+            if (i < textos.length) {
+                textoEl.textContent = textos[i];
+                i++;
+                if (i === textos.length) {
+                    btnSkip.style.display = "none"; 
+                    btnBatalhar.style.display = 'block';
+                    btnNovoJogo.style.display = 'block'; 
+                    boxVida.style.display = 'block'; 
+                }
+            }
+        }
+
+        btnSkip.addEventListener("click", exibirProximoTexto);
+        dialogoBox.addEventListener("click", exibirProximoTexto);
+
+        exibirProximoTexto();
+    </script>
+</body>
+</html>

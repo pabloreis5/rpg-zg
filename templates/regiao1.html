@@ -21,6 +21,10 @@
             </a>
         </div>
 
+        <div id="boxVida">
+            Vida: <strong id="vida">5</strong>
+        </div>
+
         <div class="regiao-dialogo-wrapper">
             <div class="regiao-dialogo" id="dialogo-box">
                 <p id="texto">...</p>
@@ -47,24 +51,40 @@
             "Processus: 'Seres mágicos como eu não podem ser afetados por Glozium, mas também não podem lutar contra ele... ele me atrapalha, me desconcentrando.'",
             "Um ser humanóide surge entre as pernas do grande monstro.",
             "Sandubinha: 'Primeiro, não é enfraquecer! Vou dar um fim total em Glozium... Venha, monstro!'",
-            "A Batalha se aproxima...", 
-            "CLIQUE EM BATALHAR!"
+            "A Batalha se aproxima... CLIQUE EM BATALHAR!"
         ];
 
         let i = 0;
         const textoEl = document.getElementById("texto");
         const btnSkip = document.getElementById("btnSkip");
+        const btnBatalhar = document.getElementById("btnBatalhar");
+        const dialogoBox = document.getElementById("dialogo-box");
+        const btnNovoJogo = document.getElementById("btnNovoJogo");
+        const boxVida = document.getElementById("boxVida");
 
-        btnSkip.addEventListener("click", () => {
+        btnBatalhar.style.display = 'none';
+        btnNovoJogo.style.display = 'none';
+        boxVida.style.display = 'none';
+
+
+        function exibirProximoTexto() {
             if (i < textos.length) {
                 textoEl.textContent = textos[i];
                 i++;
-            } else {
-                btnSkip.style.display = "none";
+                if (i === textos.length) {
+                    btnSkip.style.display = "none"; 
+                    btnBatalhar.style.display = 'block';
+                    btnNovoJogo.style.display = 'block';
+                    boxVida.style.display = 'block';
+                }
             }
-        });
+        }
 
-        textoEl.textContent = textos[i++];
+        btnSkip.addEventListener("click", exibirProximoTexto);
+        dialogoBox.addEventListener("click", exibirProximoTexto);
+
+        exibirProximoTexto();
+
     </script>
 </body>
 </html>
