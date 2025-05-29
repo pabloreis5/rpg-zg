@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Vitória!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="bg-vitoria">
+    <div class="vinheta"></div> <div class="vitoria-container-v2"> {% if context %}
+            <h1 class="titulo-vitoria-v2">VITÓRIA!</h1>
+
+            <img src="{{ url_for('static', filename='imagens/' + context.item_imagem) }}"
+                 alt="Item Ganho: {{ context.item_nome }}"
+                 class="item-ganho-imagem-v2">
+
+            <p class="mensagem-item-ganho-v2">
+                VOCÊ GANHOU O ITEM: {{ context.item_nome | upper }}
+            </p>
+
+            <a href="{{ url_for(context.proxima_url.strip('/')) }}"
+               class="link-continuar-v2">
+                CONTINUAR TRILHA
+            </a>
+        {% else %}
+            <h1 class="titulo-vitoria-v2">ERRO</h1>
+            <p class="mensagem-item-ganho-v2">
+                Não foi possível carregar os dados da vitória.
+            </p>
+            <a href="{{ url_for('index') }}" class="link-continuar-v2">
+                VOLTAR AO INÍCIO
+            </a>
+        {% endif %}
+    </div>
+</body>
+</html>

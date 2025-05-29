@@ -401,6 +401,88 @@ body.bg-fase1 {
     color: #fff;
     text-decoration: underline;
 }
+body.bg-vitoria {
+    background-image: url('../imagens/vitoria-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'IM Fell English SC', serif; /* */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #c7c3c3;
+    overflow: hidden;
+    position: relative;
+}
+.vitoria-container-v2 {
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente sutil */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center;    /* Centraliza os itens horizontalmente */
+    justify-content: center;/* Centraliza os itens verticalmente no espaço disponível */
+    gap: 2rem;            /* Espaçamento entre os elementos */
+    max-width: 450px;       /* Largura máxima para o container */
+    width: 90%;
+    text-align: center;     /* Garante que o texto dentro dos <p> e <h1> também seja centrado */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    position: relative; /* Para garantir que fique acima da vinheta de body */
+    z-index: 2;
+}
+
+.titulo-vitoria-v2 {
+    font-size: 2.8rem; /* Tamanho do título "VITÓRIA!" */
+    color: #ffd700;     /* Cor dourada */
+    text-shadow: 2px 2px 4px #000;
+    margin: 0;          /* Remove margens padrão */
+}
+
+.item-ganho-imagem-v2 {
+    max-width: 130px;   /* Tamanho para a imagem do item */
+    max-height: 130px;
+    height: auto;
+    object-fit: contain; /* Garante que a imagem caiba sem distorcer */
+    border-radius: 5px;  /* Borda arredondada suave na imagem */
+    background-color: rgba(255,255,255,0.05); /* Fundo leve para a imagem se destacar */
+    padding: 5px; /* Pequeno preenchimento ao redor da imagem */
+}
+
+.mensagem-item-ganho-v2 {
+    font-size: 1.3rem;
+    color: #eee;         /* Cor clara para o texto */
+    margin: 0;
+}
+
+.link-continuar-v2 {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.2rem;
+    color: #ffc;        /* Cor amarela clara para o link */
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #ffc; /* Borda sutil */
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    text-transform: uppercase; /* Como no esboço */
+}
+
+.link-continuar-v2:hover {
+    background-color: #ffc;
+    color: #111; /* Cor escura para o texto no hover */
+    box-shadow: 0 0 10px rgba(255, 255, 192, 0.7);
+}
+
+.link-continuar:hover {
+    background-color: #ffd700;
+    color: #333;
+    box-shadow: 0 0 15px #ffd700;
+    transform: scale(1.05);
+}
 
 /* ===== Responsividade ===== */
 
@@ -471,4 +553,22 @@ body.bg-fase1 {
     .batalha-header { flex-direction: column; gap: 10px; }
     .item-slot { width: 70px; height: 50px; font-size: 0.7rem; }
     .inventario-slots { gap: 10px; }  
+
+    .vitoria-container-v2 {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    .titulo-vitoria-v2 {
+        font-size: 2.2rem;
+    }
+    .item-ganho-imagem-v2 {
+        max-width: 100px;
+    }
+    .mensagem-item-ganho-v2 {
+        font-size: 1.1rem;
+    }
+    .link-continuar-v2 {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
 }

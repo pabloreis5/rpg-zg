@@ -5,7 +5,7 @@ MONSTROS = {
         'vida_inicial': 3,
         'qtd_sorteios': 1, 
         'item_nome': 'Guia de atendimento',
-        'item_imagem': '../imagens/item1_guia', 
+        'item_imagem': 'item1_guia.png', 
         'proxima_url': '/regiao2'
     },
     'urso': {
