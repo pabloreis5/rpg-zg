@@ -3,7 +3,7 @@ ITENS = {
         'id': 'guia_atendimento',
         'nome': 'Guia de Atendimento',
         'descricao': 'Fortifica o personagem, +2 números por ataque.',
-        'imagem': '../imagens/item1_guia.png',
+        'imagem': 'item1_guia.png',
         'beneficio': {'tipo': 'sorteios_adicionais', 'valor': 2},
         'consequencia': None,
         'custo_uso': None

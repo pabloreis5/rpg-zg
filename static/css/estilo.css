@@ -264,7 +264,7 @@ body.bg-fase1 {
 }
 
 .batalha-inventario {
-    padding: 1.5rem;
+    padding: 1.0rem;
     background-color: rgba(0, 0, 0, 0.3);
     border-top: 1px solid #444;
     text-align: center;
@@ -273,91 +273,8 @@ body.bg-fase1 {
 .batalha-inventario h5 {
     margin-top: 0;
     margin-bottom: 1rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: normal;
-}
-
-.inventario-slots {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.item-slot, .item-slot-vazio {
-    width: 60px;
-    height: 50px;
-    border: 2px solid #555;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    position: relative; 
-}
-.item-slot-vazio {
-    cursor: default;
-    opacity: 0.3;
-}
-
-.item-slot:hover {
-    border-color: #eee;
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.item-slot input[type="radio"] {
-    display: none;
-}
-
-.item-slot input[type="radio"]:checked + span {
-    font-weight: bold;
-    color: #ffc;
-}
-.item-slot input[type="radio"]:checked + span::before {
-    content: '✓ ';
-    color: #0f0;
-}
-.item-slot:has(input[type="radio"]:checked) { 
-    border-color: #0f0;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
-}
-
-.item-tooltip {
-    visibility: hidden;
-    width: 150px;
-    background-color: #111;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 10px;
-    position: absolute;
-    z-index: 10;
-    bottom: 110%; 
-    left: 50%;
-    margin-left: -75px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    font-size: 0.8rem;
-    border: 1px solid #666;
-}
-.item-tooltip::after { /* Flecha do tooltip */
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #111 transparent transparent transparent;
-}
-.item-slot:hover .item-tooltip {
-    visibility: visible;
-    opacity: 1;
 }
 
 .batalha-actions {
@@ -555,6 +472,23 @@ body.bg-derrota {
     border-color: #ccc;
     box-shadow: 0 0 10px rgba(204, 204, 204, 0.4);
 }
+
+body.bg-fase2 {
+    background-image: url('../imagens/bg-fase2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #000; 
+    font-family: 'IM Fell English SC', serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    font-size: 1rem;
+}
+
+
 
 /* ===== Responsividade ===== */
 

@@ -4,7 +4,7 @@ MONSTROS = {
         'nome': 'Processus ministerii',
         'vida_inicial': 3,
         'qtd_sorteios': 1, 
-        'item_nome': 'Guia de atendimento',
+        'item_nome': 'Guia de Atendimento',
         'item_imagem': 'item1_guia.png', 
         'proxima_url': '/regiao2'
     },

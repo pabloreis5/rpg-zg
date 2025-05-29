@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Batalha - {{ nome_monstro }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
 </head>
+
 <body class="bg-fase1">
     <div class="vinheta"></div>
 
@@ -27,46 +29,34 @@
             <h4>Eventos da Rodada:</h4>
             <div class="log-content">
                 {% if ultima_rodada %}
-                    {% for evento in ultima_rodada %}
-                        <p>{{ evento }}</p>
-                    {% endfor %}
+                {% for evento in ultima_rodada %}
+                <p>{{ evento }}</p>
+                {% endfor %}
                 {% else %}
-                    <p>A batalha começa! Selecione um item (opcional) e avance a rodada.</p>
+                <p>A batalha começa! Selecione um item (opcional) e avance a rodada.</p>
                 {% endif %}
             </div>
         </main>
 
         <form method="POST" class="batalha-form">
             <section class="batalha-inventario">
-                <h5>Inventário (Selecione um item para usar):</h5>
-                <div class="inventario-slots">
-                    <label class="item-slot">
-                        <input type="radio" name="item_selecionado" value="" checked>
-                        <span>Nenhum</span>
-                    </label>
+                <h5>Selecione um item para usar na rodada:</h5>
 
-                    {% set itens_conquistados = session.get("itens_conquistados", []) %}
-                    {% for item_nome in itens_conquistados %}
-                        {% set item_id = '' %}
-                        {% for id, details in ITENS.items() %}
-                            {% if details.nome == item_nome %}
-                                {% set item_id = id %}
-                            {% endif %}
+                <div>
+                    <select name="item_selecionado" id="item-select"
+                        style="padding: 8px; font-family: 'IM Fell English SC', serif; font-size: 1.1rem;">
+
+                        <option value="">-- Nenhum Item --</option>
+
+                        {% set itens_conquistados = session.get("itens_conquistados", []) %}
+                        {% for item_id, item_details in ITENS.items() %}
+                        {% if item_details.nome in itens_conquistados %}
+                        <option value="{{ item_id }}">{{ item_details.nome }}</option>
+                        {% endif %}
                         {% endfor %}
 
-                        {% if item_id and ITENS[item_id] %}
-                            {% set item_info = ITENS[item_id] %}
-                            <label class="item-slot">
-                                <input type="radio" name="item_selecionado" value="{{ item_id }}">
-                                <span>{{ item_info.nome }}</span>
-                                <div class="item-tooltip">{{ item_info.descricao }}</div>
-                            </label>
-                        {% endif %}
-                    {% endfor %}
+                    </select>
 
-                    {% for i in range(6 - (itens_conquistados|length + 1)) %}
-                         <div class="item-slot-vazio"></div>
-                    {% endfor %}
                 </div>
             </section>
 
@@ -78,5 +68,7 @@
             </footer>
         </form>
 
-    </div> </body>
+    </div>
+</body>
+
 </html>

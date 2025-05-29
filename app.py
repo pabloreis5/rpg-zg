@@ -53,7 +53,7 @@ def batalha(monster_id):
             session["num_secreto_monstro"] = randint(1, session["vida_monstro_inicial"])
             session["num_secreto_personagem"] = randint(1, session["vida_personagem_inicial"])
 
-            session["qtd_sorteios_personagem"] = monstro_data['qtd_sorteios']
+            session["qtd_sorteios_personagem"] = 1
 
             session["log_batalha"] = []
             session["ultima_rodada"] = []
@@ -100,6 +100,8 @@ def batalha(monster_id):
             limpar_dados_batalha()
             session["batalha_iniciada"] = False
             return redirect(url_for('derrota'))
+    
+    print(f"DEBUG - Itens na sessão ao carregar a batalha: {session.get('itens_conquistados')}")
 
     return render_template("batalha.html",
                            vida_personagem=session.get("vida_personagem", 0),
