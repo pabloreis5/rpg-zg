@@ -4,7 +4,7 @@ ITENS = {
         'nome': 'Guia de Atendimento',
         'descricao': 'Fortifica o personagem, +2 números por ataque.',
         'imagem': 'item1_guia.png',
-        'beneficio': {'tipo': 'sorteios_adicionais', 'valor': 2},
+        'beneficio': {'tipo': 'sorteios_adicionais', 'valor': 1},
         'consequencia': None,
         'custo_uso': None
     },
@@ -12,7 +12,7 @@ ITENS = {
         'id': 'faturamentus',
         'nome': 'Faturamentus',
         'descricao': '+4 números, mas se errar, próximo ataque do monstro +2 dano.',
-        'imagem': '../imagens/item2_placa',
+        'imagem': 'item2_placa.png',
         'beneficio': {'tipo': 'sorteios_adicionais', 'valor': 4},
         'consequencia': {'gatilho': 'erro', 'efeito': 'bonus_dano_monstro', 'valor': 2},
         'custo_uso': None

@@ -48,11 +48,17 @@
 
                         <option value="">-- Nenhum Item --</option>
 
-                        {% set itens_conquistados = session.get("itens_conquistados", []) %}
+                        {% set ids_itens_conquistados = session.get("itens_conquistados", []) %}
+                        {% set ids_itens_usados = session.get("itens_usados_batalha", []) %}
+                        
                         {% for item_id, item_details in ITENS.items() %}
-                        {% if item_details.nome in itens_conquistados %}
-                        <option value="{{ item_id }}">{{ item_details.nome }}</option>
+                        
+                        {% if item_id in ids_itens_conquistados %}
+                        <option value="{{ item_id }}" {{ 'disabled' if item_id in ids_itens_usados }}>
+                            {{ item_details.nome }} {% if item_id in ids_itens_usados %}(Usado){% endif %}
+                        </option>
                         {% endif %}
+                        
                         {% endfor %}
 
                     </select>

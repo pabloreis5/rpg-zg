@@ -6,9 +6,10 @@ def executar_rodada():
     log = []
     item_ativo_id = session.get('item_ativo')
     item = ITENS.get(item_ativo_id) if item_ativo_id else None
-    efeitos_proxima_rodada = session.pop('efeitos_proxima_rodada', {}) 
+    efeitos_proxima_rodada = session.pop('efeitos_proxima_rodada', {})
+    itens_usados_batalha = session.get('itens_usados_batalha', [])
 
-    if item and item.get('custo_uso'):
+    if item and item_ativo_id not in itens_usados_batalha and item.get('custo_uso'):
         custo = item['custo_uso']
         if custo['tipo'] == 'vida':
             session["vida_personagem"] -= custo['valor']
@@ -21,12 +22,17 @@ def executar_rodada():
     intervalo = session["vida_monstro_inicial"]
     num_secreto = session["num_secreto_monstro"]
     qtd = session["qtd_sorteios_personagem"]
+    item_foi_usado_nesta_rodada = False 
 
     if item:
-        rodada_log.append(f"✨ Usando: {item['nome']}")
-        if item.get('beneficio', {}).get('tipo') == 'sorteios_adicionais':
-            qtd += item['beneficio']['valor']
-            rodada_log.append(f"   -> Bônus: +{item['beneficio']['valor']} sorteios!")
+        if item_ativo_id in itens_usados_batalha:
+            rodada_log.append(f"⚠️ Item '{item['nome']}' já foi utilizado nesta batalha.")
+        else:
+            item_foi_usado_nesta_rodada = True
+            rodada_log.append(f"✨ Usando: {item['nome']}")
+            if item.get('beneficio', {}).get('tipo') == 'sorteios_adicionais':
+                qtd += item['beneficio']['valor']
+                rodada_log.append(f"   -> Bônus: +{item['beneficio']['valor']} sorteios!")
 
     sorteios = [randint(1, intervalo) for _ in range(qtd)]
     acertos = sorteios.count(num_secreto)
@@ -40,11 +46,15 @@ def executar_rodada():
     rodada_log.append(f"- Dano causado: {dano}")
     rodada_log.append(f"- Vida restante do monstro: {session['vida_monstro']}")
 
-    if errou and item and item.get('consequencia') and item['consequencia']['gatilho'] == 'erro':
+    if item_foi_usado_nesta_rodada and errou and item.get('consequencia') and item['consequencia']['gatilho'] == 'erro':
         efeito = item['consequencia']
         if efeito['efeito'] == 'bonus_dano_monstro':
             efeitos_proxima_rodada['bonus_dano_monstro'] = efeito['valor']
-            rodada_log.append(f"   -> ⚠️ Errou! Próximo ataque do monstro terá +{efeito['valor']} dano.")
+            rodada_log.append(f"   -> ⚠️ Errou! Próximo ataque do monstro terá +{efeito['valor']} de dano.")
+
+    if item_foi_usado_nesta_rodada:
+        itens_usados_batalha.append(item_ativo_id)
+        session['itens_usados_batalha'] = itens_usados_batalha
 
     log.extend(rodada_log)
 
@@ -64,7 +74,7 @@ def executar_rodada():
 
     if 'bonus_dano_monstro' in efeitos_proxima_rodada:
         dano_m += efeitos_proxima_rodada['bonus_dano_monstro']
-        rodada_log.append(f"   -> ⚠️ Efeito de item: Monstro causa +{efeitos_proxima_rodada['bonus_dano_monstro']} dano!")
+        rodada_log.append(f"   -> ⚠️ Efeito de item: Monstro causa +{efeitos_proxima_rodada['bonus_dano_monstro']} de dano!")
 
     session["vida_personagem"] = max(0, session["vida_personagem"] - dano_m)
 
